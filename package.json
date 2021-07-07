@@ -1,0 +1,23 @@
+{
+  "name": "ms-tracing",
+  "version": "1.0.0",
+  "description": "Service for managing tracing resources for distributed microsservice based systems",
+  "main": "handler.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.941.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "serverless-webpack": "^5.5.1",
+    "webpack": "^5.43.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Filipe Lima",
+  "license": "ISC"
+}
