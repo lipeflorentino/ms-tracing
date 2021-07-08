@@ -1,0 +1,27 @@
+NewTransaction:
+  handler: handler.NewTransaction
+  events:
+  - http:
+      path: /transactions
+      method: post
+
+GetTransaction:
+  handler: handler.GetTransaction
+  events:
+  - http:
+      path: /transactions
+      method: get
+
+DeleteTransaction:
+  handler: handler.DeleteTransaction
+  events:
+  - http:
+      path: /transactions
+      method: delete
+
+UpdateTransaction:
+  handler: handler.UpdateTransaction
+  events:
+  - http:
+      path: /transactions
+      method: update
