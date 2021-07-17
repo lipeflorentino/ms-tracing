@@ -4,13 +4,13 @@ Resources:
     Properties:
       TableName: ${self:provider.environment.tracingTable}
       AttributeDefinitions:
-        - AttributeName: id
+        - AttributeName: requestId
           AttributeType: S
         - AttributeName: createdAt
           AttributeType: S
         - AttributeName: status
           AttributeType: S
-        - AttributeName: requestId
+        - AttributeName: transactiontId
           AttributeType: S
       KeySchema:
         - AttributeName: id
@@ -26,10 +26,16 @@ Resources:
             ProjectionType: ALL
         - IndexName: RequestIndex
           KeySchema:
-            - AttributeName: requestId
+            - AttributeName: transactionId
               KeyType: HASH
             - AttributeName: status
               KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: StatusIndex
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
           Projection:
             ProjectionType: ALL
       BillingMode: PAY_PER_REQUEST
