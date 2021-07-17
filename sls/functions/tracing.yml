@@ -45,4 +45,4 @@ UpdateTransaction:
   events:
   - http:
       path: /transactions
-      method: update
+      method: put

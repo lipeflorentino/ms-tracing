@@ -16,7 +16,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm run test"
+    "deploy-dev": "sls deploy -s dev --aws-profile dev-uff",
+    "test": "npm run test",
+    "init-project": "./init-project.sh"
   },
   "author": "Filipe Lima",
   "license": "ISC"
