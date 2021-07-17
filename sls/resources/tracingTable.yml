@@ -1,8 +1,8 @@
 Resources:
-  RequestsTable:
+  TracingTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:provider.environment.requestsTable}
+      TableName: ${self:provider.environment.tracingTable}
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
@@ -10,7 +10,7 @@ Resources:
           AttributeType: S
         - AttributeName: status
           AttributeType: S
-        - AttributeName: transactionId
+        - AttributeName: requestId
           AttributeType: S
         - AttributeName: type
           AttributeType: S
@@ -28,7 +28,7 @@ Resources:
             ProjectionType: ALL
         - IndexName: TransactionIndex
           KeySchema:
-            - AttributeName: transactionId
+            - AttributeName: requestId
               KeyType: HASH
             - AttributeName: status
               KeyType: RANGE
