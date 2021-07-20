@@ -1,9 +1,36 @@
 import { Transaction } from '../../models';
 
-export const newTransaction = (event, context) => {
-  console.log('event', event);
+export const newTransaction = async (event, context) => {
+  let statusCode;
+  let data;
+  let message;
 
-  const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+  try {
+    const params = {
+      status: 'initiated',
+    };
+
+    const transaction = await Transaction.create(params);
+
+    console.log('transaction created successfully!', transaction);
+
+    statusCode = 201;
+    message = 'Trasaction created successfully!';
+    data = transaction;
+  } catch (error) {
+    console.log('error', error);
+    statusCode = 400;
+    message = 'Failed to create transaction!';
+    data = error;
+  }
+
+  return {
+    statusCode,
+    body: JSON.stringify({
+      message,
+      data,
+    })
+  }
 };
 
 export const deleteTransaction = async (event, context) => {
@@ -35,13 +62,13 @@ export const deleteTransaction = async (event, context) => {
   }
 };
 
-export const updateTransaction = (event, context) => {
+export const updateTransaction = async (event, context) => {
   console.log('event', event);
 
   const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
 };
 
-export const getTransaction = (event, context) => {
+export const getTransaction = async (event, context) => {
   console.log('event', event);
 
   const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;

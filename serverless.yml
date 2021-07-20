@@ -31,12 +31,12 @@ provider:
   environment:
     transactionTable: ${self:service}-${self:custom.stage}-transaction-table
     requestTable: ${self:service}-${self:custom.stage}-request-table
-  # iamRoleStatements:
-  #   - Effect: Allow
-  #     Action: "*"
-  #     Resource:
-  #       - arn:aws:dynamodb:*:*:table/${self:provider.environment.transactionTable}
-  #       - arn:aws:dynamodb:*:*:table/${self:provider.environment.requestTable}
+  iamRoleStatements:
+    - Effect: Allow
+      Action: "*"
+      Resource:
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.transactionTable}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.requestTable}
 
 
 package:

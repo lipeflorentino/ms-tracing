@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import { v4 as uuidv4 } from 'uuid';
 
-const TraceSchema = new dynamoose.Schema({
+const RequestSchema = new dynamoose.Schema({
   requestId: {
     type: String,
     hashKey: true,
@@ -40,7 +40,16 @@ const TraceSchema = new dynamoose.Schema({
       },
     ],
   },
-  type: String,
+  type: {
+    type: String,
+    index:[
+      {
+        global: true,
+        name: 'TypeIndex',
+        rangeKey: 'transactionId',
+      }
+    ]
+  },
   service: String,
   input: Object,
   output: Object,
@@ -50,13 +59,13 @@ const TraceSchema = new dynamoose.Schema({
   timestamps: false,
 });
 
-const Trace = dynamoose.model(
-  process.env.tracingTable,
-  TraceSchema,
+const Request = dynamoose.model(
+  process.env.requestTable,
+  RequestSchema,
   {
     create: false,
     waitForActive: false,
   },
 );
 
-export default Trace;
+export default Request;

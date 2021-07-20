@@ -2,10 +2,13 @@ import * as dynamoose from 'dynamoose';
 
 import moment from 'moment';
 
+import { v4 as uuid } from 'uuid';
+
 const TransactionSchema = new dynamoose.Schema({
   transactionId: {
     type: String,
     hashKey: true,
+    default: uuid(),
   },
   createdAt: {
     type: String,
