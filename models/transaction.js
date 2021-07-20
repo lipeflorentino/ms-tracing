@@ -2,15 +2,10 @@ import * as dynamoose from 'dynamoose';
 
 import moment from 'moment';
 
-import { v4 as uuidv4 } from 'uuid';
-
-
-
-const TracingSchema = new dynamoose.Schema({
-  requestId: {
+const TransactionSchema = new dynamoose.Schema({
+  transactionId: {
     type: String,
     hashKey: true,
-    default: uuidv4(),
   },
   createdAt: {
     type: String,
@@ -19,16 +14,6 @@ const TracingSchema = new dynamoose.Schema({
       {
         global: true,
         name: 'DateIndex',
-        rangeKey: 'status',
-      },
-    ]
-  },
-  transactionId: {
-    type: Number,
-    index:[
-      {
-        global: true,
-        name: 'TransactionIndex',
         rangeKey: 'status',
       },
     ]
@@ -42,23 +27,18 @@ const TracingSchema = new dynamoose.Schema({
       },
     ],
   },
-  type: String,
-  service: String,
-  input: Object,
-  output: Object,
-  ErrorTrace: Object,
 }, {
   saveUnknown: true,
   timestamps: false,
 });
 
-const Tracing = dynamoose.model(
-  process.env.tracingTable,
-  TracingSchema,
+const Transaction = dynamoose.model(
+  process.env.transactionTable,
+  TransactionSchema,
   {
     create: false,
     waitForActive: false,
   },
 );
 
-export default Tracing;
+export default Transaction;

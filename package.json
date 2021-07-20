@@ -7,10 +7,12 @@
     "test": "tests"
   },
   "dependencies": {
+    "@babel/core": "^7.14.6",
     "aws-sdk": "^2.941.0",
     "babel-loader": "^8.2.2",
     "babel-preset-env": "^1.7.0",
     "dynamoose": "^2.7.3",
+    "moment": "^2.29.1",
     "serverless-webpack": "^5.5.1",
     "uuid": "^8.3.2",
     "webpack": "^5.43.0",

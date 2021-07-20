@@ -29,13 +29,14 @@ provider:
   profile: ${self:custom.profile}
   lambdaHashingVersion: 20201221
   environment:
-    tracingTable: ${self:service}-${self:custom.stage}-tracing-table
+    transactionTable: ${self:service}-${self:custom.stage}-transaction-table
+    requestTable: ${self:service}-${self:custom.stage}-request-table
   # iamRoleStatements:
   #   - Effect: Allow
   #     Action: "*"
   #     Resource:
-  #       - arn:aws:dynamodb:*:*:table/${self:provider.environment.tracingTable}
-  #       - arn:aws:dynamodb:*:*:table/*
+  #       - arn:aws:dynamodb:*:*:table/${self:provider.environment.transactionTable}
+  #       - arn:aws:dynamodb:*:*:table/${self:provider.environment.requestTable}
 
 
 package:
@@ -45,7 +46,9 @@ package:
     - node_modules/**
 
 functions:
-  - ${file(sls/functions/tracing.yml)}
+  - ${file(sls/functions/request.yml)}
+  - ${file(sls/functions/transaction.yml)}
 
 resources:
-  - ${file(sls/resources/tracingTable.yml)}
+  - ${file(sls/resources/transactionTable.yml)}
+  - ${file(sls/resources/requestTable.yml)}

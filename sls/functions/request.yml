@@ -1,0 +1,20 @@
+SaveRequest:
+  handler: handler.SaveRequest
+  events:
+    - http:
+        path: /requests
+        method: post
+
+DeleteRequest:
+  handler: handler.DeleteRequest
+  events:
+    - http:
+        path: /requests
+        method: delete
+
+GetRequest:
+  handler: handler.GetRequest
+  events:
+    - http:
+        path: /requests
+        method: get
