@@ -1,4 +1,4 @@
-import { Transaction } from '../../models';
+import { Transaction, Request } from '../../models';
 
 export const newTransaction = async (event, context) => {
   let statusCode;
@@ -69,7 +69,40 @@ export const updateTransaction = async (event, context) => {
 };
 
 export const getTransaction = async (event, context) => {
+  let message;
+  let data;
+  let statusCode;
+
   console.log('event', event);
 
-  const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+  try {
+    const {
+      transactionId,
+    } = event.queryStringParameters;
+
+    const transaction = await Transaction.get(transactionId);
+
+    console.log('transaction', transaction);
+
+    const requests = await Request.query("transactionId").eq(transactionId).exec();
+
+    console.log('response', requests);
+
+    statusCode = 200;
+    message = 'Transaction fecthed successfully!';
+    data = { transaction, requests };
+  } catch (error) {
+    console.log('error', error);
+    statusCode = 400;
+    message = 'Failed to fecth transaction!';
+    data = error;
+  }
+
+  return {
+    statusCode,
+    body: JSON.stringify({
+      message,
+      data,
+    }),
+  }
 };

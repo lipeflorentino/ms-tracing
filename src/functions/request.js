@@ -22,7 +22,6 @@ export const saveRequest = async (event, context) => {
     } = eventBody;
 
     const params = {
-      requestId: uuid(),
       transactionId,
       type,
       service,
@@ -39,7 +38,7 @@ export const saveRequest = async (event, context) => {
     if (type !== 'body') {
       const request = await Request.query("type").eq(type).where("transactionId").eq(transactionId).exec();
       if (request && request.count > 0)
-        throw new Error(`Already exists a request with type head for the transaction ${transactionId}`);
+        throw new Error(`Already exists a request with type ${type} for the transaction ${transactionId}`);
     }
 
     console.log('saving request!', params);
@@ -119,5 +118,11 @@ export const deleteRequest = (event, context) => {
   console.log('event', event);
 
   const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+
+  try {
+
+  } catch (error) {
+
+  }
 };
 
