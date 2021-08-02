@@ -2,6 +2,8 @@ import { v4 as uuid } from 'uuid';
 
 import { Request, Transaction } from '../../models';
 
+import Graph from 'graph-data-structure';
+
 export const saveRequest = async (event, context) => {
   console.log('event', event);
   let message;
@@ -115,8 +117,6 @@ export const getRequest = async (event, context) => {
 };
 
 export const deleteRequest = (event, context) => {
-  console.log('event', event);
-
   const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
 
   try {
