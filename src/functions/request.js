@@ -5,7 +5,8 @@ import { Request, Transaction } from '../../models';
 import Graph from 'graph-data-structure';
 
 export const saveRequest = async (event, context) => {
-  console.log('event', event);
+  console.log('event', event.body);
+
   let message;
   let data;
   let statusCode;
@@ -34,6 +35,8 @@ export const saveRequest = async (event, context) => {
     };
 
     const transaction = await Transaction.get(transactionId);
+
+    console.log('transaction', transaction);
 
     if (!transaction) throw new Error(`The transaction ${transactionId} was not initiated!`);
 
