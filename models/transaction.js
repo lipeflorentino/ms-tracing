@@ -44,4 +44,6 @@ const Transaction = dynamoose.model(
   },
 );
 
+console.log('SCHEMA', TransactionSchema);
+
 export default Transaction;
