@@ -83,17 +83,11 @@ export const getRequest = async (event, context) => {
   try {
     const {
       requestId,
-      createdAt,
-      status,
-    } = event.queryStringParameters;
+    } = event.queryStringParameters || {};
 
-    const params = {
-      requestId,
-      createdAt,
-      status,
-    };
+    const request = await Request.get(requestId);
 
-    const request = await Trace.get(params);
+    if (!request) throw new Error(JSON.stringify({ errorMessage: 'Not found!', status: 404 }));
 
     console.log('request', request);
 
@@ -101,10 +95,12 @@ export const getRequest = async (event, context) => {
     message = 'Request retrieved successfully!';
     statusCode = 200;
   } catch (error) {
-    console.log('error', error);
-    data = error;
-    message = 'An error ocurred!';
-    statusCode = 400;
+    const { errorMessage, status } = JSON.parse(error.message)
+    console.log('error', errorMessage);
+
+    data = null;
+    message = errorMessage ? errorMessage : 'An error ocurred!';
+    statusCode = status ? status : 400;
   }
 
   return {
