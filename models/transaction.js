@@ -2,13 +2,13 @@ import * as dynamoose from 'dynamoose';
 
 import moment from 'moment';
 
-import { v4 as uuid } from 'uuid';
+import { v5 as uuid } from 'uuid';
 
 const TransactionSchema = new dynamoose.Schema({
   transactionId: {
     type: String,
     hashKey: true,
-    default: uuid(),
+    default: uuid('https://www.w3.org/', 'c3e23e31-83ea-4a96-9ead-49029c96abdd'),
   },
   createdAt: {
     type: String,
@@ -43,7 +43,5 @@ const Transaction = dynamoose.model(
     waitForActive: false,
   },
 );
-
-console.log('SCHEMA', TransactionSchema);
 
 export default Transaction;
