@@ -35,6 +35,8 @@ provider:
     - Effect: Allow
       Action: "*"
       Resource:
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.transactionTable}/*
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.requestTable}/*
         - arn:aws:dynamodb:*:*:table/${self:provider.environment.transactionTable}
         - arn:aws:dynamodb:*:*:table/${self:provider.environment.requestTable}
 
