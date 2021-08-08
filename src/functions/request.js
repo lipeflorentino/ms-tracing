@@ -34,12 +34,6 @@ export const saveRequest = async (event, context) => {
       status,
     };
 
-    const transaction = await Transaction.get(transactionId);
-
-    console.log('transaction', transaction);
-
-    if (!transaction) throw new Error(`The transaction ${transactionId} was not initiated!`);
-
     if (type !== 'body') {
       const request = await Request.query("type").eq(type).where("transactionId").eq(transactionId).exec();
       if (request && request.count > 0)
