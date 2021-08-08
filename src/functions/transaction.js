@@ -1,13 +1,20 @@
 import { Transaction, Request } from '../../models';
 
 export const newTransaction = async (event, context) => {
+  console.log('event', event.body);
+
   let statusCode;
   let data;
   let message;
 
   try {
+    const eventBody = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
+
+    const { transactionId } = eventBody;
+
     const params = {
       status: 'initiated',
+      transactionId,
     };
 
     const transaction = await Transaction.create(params);
