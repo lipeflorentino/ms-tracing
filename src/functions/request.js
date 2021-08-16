@@ -44,7 +44,7 @@ export const saveRequest = async (event, context) => {
 
     const newRequest = await Request.create(params);
 
-    console.log('Request saved!', params);
+    console.log('Request saved!', newRequest);
 
     if (type === 'tail') {
       console.log('updating transaction status...');

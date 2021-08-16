@@ -68,4 +68,6 @@ const Request = dynamoose.model(
   },
 );
 
+console.log('Request', Request);
+
 export default Request;
