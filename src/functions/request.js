@@ -42,13 +42,13 @@ export const saveRequest = async (event, context) => {
 
     const id = generateId(`${Date.now + Math.random() + params}`);
 
-    const request = new Request(params);
+    const requestParams = new Request(params);
 
-    request.id = id;
+    requestParams.requestId = id;
 
     console.log('saving request!', { params });
 
-    const newRequest = await Request.save(request);
+    const newRequest = await Request.save(requestParams);
 
     console.log('Request saved!', newRequest);
 
