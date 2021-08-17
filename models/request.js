@@ -2,13 +2,13 @@ import * as dynamoose from 'dynamoose';
 
 import moment from 'moment';
 
-import { v4 as uuidv4 } from 'uuid';
+import { v5 as uuid } from 'uuid';
 
 const RequestSchema = new dynamoose.Schema({
   requestId: {
     type: String,
     hashKey: true,
-    default: uuidv4(),
+    default: uuid(`${Math.random() + Math.floor(Math.random() * Date.now())}`, 'e9fcc2dc-91d7-45a3-98ec-4d39564c9590'),
   },
   createdAt: {
     type: String,
