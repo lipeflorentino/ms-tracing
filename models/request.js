@@ -51,6 +51,7 @@ const RequestSchema = new dynamoose.Schema({
     ]
   },
   service: String,
+  function: String,
   input: Object,
   output: Object,
   ErrorTrace: Object,
