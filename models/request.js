@@ -68,6 +68,6 @@ const Request = dynamoose.model(
   },
 );
 
-console.log('Request', Request);
+console.dir('RequestSchema', { RequestSchema });
 
 export default Request;

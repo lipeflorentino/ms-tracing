@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 import { Request, Transaction } from '../../models';
 
-import Graph from 'graph-data-structure';
+import { generateId } from '../utils/generateId';
 
 export const saveRequest = async (event, context) => {
   console.log('event', event.body);
@@ -40,9 +40,15 @@ export const saveRequest = async (event, context) => {
         throw new Error(`Already exists a request with type ${type} for the transaction ${transactionId}`);
     }
 
-    console.log('saving request!', params);
+    const id = generateId(`${Date.now + Math.random() + params}`);
 
-    const newRequest = await Request.create(params);
+    const request = new Request(params);
+
+    request.id = id;
+
+    console.log('saving request!', { params });
+
+    const newRequest = await Request.save(request);
 
     console.log('Request saved!', newRequest);
 
