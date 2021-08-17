@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 import { Request, Transaction } from '../../models';
 
-import { generateId } from '../utils/generateId';
+import { default as generateId } from '../utils/generateId';
 
 export const saveRequest = async (event, context) => {
   console.log('event', event.body);
@@ -42,13 +42,11 @@ export const saveRequest = async (event, context) => {
 
     const id = generateId(`${Date.now + Math.random() + params}`);
 
-    const requestParams = new Request(params);
-
-    requestParams.requestId = id;
+    params.requestId = id;
 
     console.log('saving request!', { params });
 
-    const newRequest = await Request.save(requestParams);
+    const newRequest = await Request.create(params);
 
     console.log('Request saved!', newRequest);
 
