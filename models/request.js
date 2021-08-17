@@ -12,7 +12,7 @@ const RequestSchema = new dynamoose.Schema({
   },
   createdAt: {
     type: String,
-    default: moment().format("YYYY-MM-DDThh:mm:ss:SSS a"),
+    default: moment().format("YYYY-MM-DDThh:mm:ss:SSS"),
     index: [
       {
         global: true,
