@@ -1,8 +1,8 @@
-import { v4 as uuid } from 'uuid';
-
 import { Request, Transaction } from '../../models';
 
 import { default as generateId } from '../utils/generateId';
+
+import moment from 'moment';
 
 export const saveRequest = async (event, context) => {
   console.log('event', event.body);
@@ -42,9 +42,8 @@ export const saveRequest = async (event, context) => {
         throw new Error(`Already exists a request with type ${type} for the transaction ${transactionId}`);
     }
 
-    const id = generateId(`${Date.now + Math.random() + params}`);
-
-    params.requestId = id;
+    params.requestId = generateId(`${Date.now + Math.random() + params}`);
+    params.createdAt = moment().format("YYYY-MM-DDThh:mm:ss:SSS");
 
     console.log('saving request!', { params });
 
