@@ -44,6 +44,7 @@ export const saveRequest = async (event, context) => {
 
     params.requestId = generateId(`${Date.now + Math.random() + params}`);
     params.createdAt = moment().format("YYYY-MM-DDThh:mm:ss:SSS");
+    params.elapsedTime = Date.now();
 
     console.log('saving request!', { params });
 

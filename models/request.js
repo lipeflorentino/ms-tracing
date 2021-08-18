@@ -22,7 +22,6 @@ const RequestSchema = new dynamoose.Schema({
   },
   elapsedCreatedAt: {
     type: Number,
-    default: Date.now(),
   },
   transactionId: {
     type: String,
