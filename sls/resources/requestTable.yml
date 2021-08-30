@@ -26,28 +26,14 @@ Resources:
               KeyType: RANGE
           Projection:
             ProjectionType: ALL
-        # - IndexName: TransactionIndex
-        #   KeySchema:
-        #     - AttributeName: transactionId
-        #       KeyType: HASH
-        #     - AttributeName: status
-        #       KeyType: RANGE
-        #   Projection:
-        #     ProjectionType: ALL
-        # - IndexName: StatusIndex
-        #   KeySchema:
-        #     - AttributeName: status
-        #       KeyType: HASH
-        #   Projection:
-        #    ProjectionType: ALL
-        # - IndexName: TransactionDateIndex
-        #   KeySchema:
-        #     - AttributeName: transactionId
-        #       KeyType: HASH
-        #     - AttributeName: createdAt
-        #       KeyType: RANGE
-        #   Projection:
-        #     ProjectionType: ALL
+        - IndexName: TransactionDateIndex
+          KeySchema:
+            - AttributeName: transactionId
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
         - IndexName: StatusDateIndex
           KeySchema:
             - AttributeName: status

@@ -14,12 +14,10 @@ Resources:
         - AttributeName: transactionId
           KeyType: HASH
       GlobalSecondaryIndexes:
-        - IndexName: DateIndex
+        - IndexName: CreatedAtIndex
           KeySchema:
             - AttributeName: createdAt
               KeyType: HASH
-            - AttributeName: status
-              KeyType: RANGE
           Projection:
             ProjectionType: ALL
         - IndexName: StatusIndex

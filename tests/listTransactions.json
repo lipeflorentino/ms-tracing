@@ -1,6 +1,6 @@
 {
   "queryStringParameters": {
-    "param": "failed",
-    "index": "status"
+    "param": "2021-08-18",
+    "index": "createdAt"
   }
 }

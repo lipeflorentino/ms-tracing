@@ -9,12 +9,11 @@ const TransactionSchema = new dynamoose.Schema({
   },
   createdAt: {
     type: String,
-    default: moment().format(),
+    default: moment().format("YYYY-MM-DDThh:mm:ss:SSS"),
     index: [
       {
         global: true,
-        name: 'DateIndex',
-        rangeKey: 'status',
+        name: 'CreatedAtIndex',
       },
     ]
   },
