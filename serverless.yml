@@ -43,9 +43,7 @@ provider:
 
 package:
   patterns:
-    - .serverless/**
-    - .git/**
-    - node_modules/**
+    - '!node_modules/**'
 
 functions:
   - ${file(sls/functions/request.yml)}

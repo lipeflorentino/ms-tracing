@@ -90,20 +90,58 @@ export const getRequest = async (event, context) => {
 
     const request = await Request.get(requestId);
 
-    if (!request) throw new Error(JSON.stringify({ errorMessage: 'Not found!', status: 404 }));
-
     console.log('request', request);
+
+    if (!request) throw new Error(JSON.stringify({ errorMessage: 'Not found!', status: 404 }));
 
     data = request;
     message = 'Request retrieved successfully!';
     statusCode = 200;
   } catch (error) {
-    const { errorMessage, status } = JSON.parse(error.message)
     console.log('error', errorMessage);
+    const { errorMessage, status } = JSON.parse(error.message)
 
     data = null;
     message = errorMessage ? errorMessage : 'An error ocurred!';
     statusCode = status ? status : 400;
+  }
+
+  return {
+    statusCode,
+    body: JSON.stringify({
+      message,
+      data,
+    }),
+  }
+};
+
+export const listRequests = async (event, context) => {
+  let data;
+  let message;
+  let statusCode;
+
+  console.log('event', event);
+
+  const {
+    param,
+    index,
+  } = event.queryStringParameters || {};
+
+  console.log('params', { param, index });
+
+  try {
+    const requests = await Request.query(index).eq(param).exec();
+
+    console.log('requests', requests);
+
+    data = { requests };
+    message = 'Requests list retrieved successfully!';
+    statusCode = 200;
+  } catch (error) {
+    console.log('error', error);
+    statusCode = 400;
+    message = 'Failed to list requests!';
+    data = error;
   }
 
   return {

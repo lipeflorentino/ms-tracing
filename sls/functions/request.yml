@@ -4,6 +4,8 @@ SaveRequest:
     - http:
         path: requests
         method: post
+  # layers:
+  #   - ${cf:lambda-layer-${self:custom.stage}.DependenciesLayerExport}
 
 DeleteRequest:
   handler: handler.DeleteRequest
@@ -17,4 +19,11 @@ GetRequest:
   events:
     - http:
         path: requests
+        method: get
+
+ListRequests:
+  handler: handler.ListRequest
+  events:
+    - http:
+        path: requests/list
         method: get

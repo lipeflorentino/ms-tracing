@@ -6,6 +6,7 @@ import {
   newTransaction,
   deleteTransaction,
   updateTransaction,
+  listTransactions,
 } from './src/functions';
 
 // sls invoke local -f SaveRequest -s dev -p tests/saveRequest.json --aws-profile dev-uff
@@ -13,6 +14,9 @@ export const SaveRequest = async (event, context) => saveRequest(event, context)
 
 // sls invoke local -f GetRequest -s dev -p tests/getRequest.json --aws-profile dev-uff
 export const GetRequest = async (event, context) => getRequest(event, context);
+
+// sls invoke local -f ListRequest -s dev -p tests/listRequest.json --aws-profile dev-uff
+export const ListRequest = async (event, context) => listRequest(event, context);
 
 // sls invoke local -f DeleteRequest -s dev -p tests/deleteRequest.json --aws-profile dev-uff
 export const DeleteRequest = async (event, context) => deleteRequest(event, context);
@@ -28,3 +32,6 @@ export const DeleteTransaction = async (event, context) => deleteTransaction(eve
 
 // sls invoke local -f UpdateTransaction -s dev -p tests/updateTransaction.json --aws-profile dev-uff
 export const UpdateTransaction = async (event, context) => updateTransaction(event, context);
+
+// sls invoke local -f ListTransactions -s dev -p tests/listTransactions.json --aws-profile dev-uff
+export const ListTransactions = async (event, context) => listTransactions(event, context);

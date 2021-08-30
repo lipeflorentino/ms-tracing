@@ -12,6 +12,13 @@ GetTransaction:
         path: transactions
         method: get
 
+ListTransactions:
+  handler: handler.ListTransactions
+  events:
+    - http:
+        path: transactions/list
+        method: get
+
 DeleteTransaction:
   handler: handler.DeleteTransaction
   events:

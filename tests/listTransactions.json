@@ -1,0 +1,6 @@
+{
+  "queryStringParameters": {
+    "param": "failed",
+    "index": "status"
+  }
+}

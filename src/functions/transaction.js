@@ -113,3 +113,41 @@ export const getTransaction = async (event, context) => {
     }),
   }
 };
+
+export const listTransactions = async (event, context) => {
+  let message;
+  let data;
+  let statusCode;
+
+  console.log('event', event);
+
+  const {
+    param,
+    index,
+  } = event.queryStringParameters;
+
+  console.log('params', { param, index });
+
+  try {
+    const transactions = await Transaction.query(index).eq(param).exec();
+
+    console.log('transactions', transactions);
+
+    statusCode = 200;
+    message = 'Transaction fecthed successfully!';
+    data = { transactions };
+  } catch (error) {
+    console.log('error', error);
+    statusCode = 400;
+    message = 'Failed to list transactions!';
+    data = error;
+  }
+
+  return {
+    statusCode,
+    body: JSON.stringify({
+      message,
+      data,
+    }),
+  }
+}
