@@ -10,20 +10,26 @@ Resources:
           AttributeType: S
         - AttributeName: status
           AttributeType: S
+        - AttributeName: elapsedTime
+          AttributeType: N
       KeySchema:
         - AttributeName: transactionId
           KeyType: HASH
       GlobalSecondaryIndexes:
-        - IndexName: CreatedAtIndex
-          KeySchema:
-            - AttributeName: createdAt
-              KeyType: HASH
-          Projection:
-            ProjectionType: ALL
-        - IndexName: StatusIndex
+        - IndexName: statusIndex
           KeySchema:
             - AttributeName: status
               KeyType: HASH
+            - AttributeName: elapsedTime
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: elapsedTimeIndex
+          KeySchema:
+            - AttributeName: createdAt
+              KeyType: HASH
+            - AttributeName: elapsedTime
+              KeyType: RANGE
           Projection:
             ProjectionType: ALL
       BillingMode: PAY_PER_REQUEST

@@ -13,16 +13,22 @@ const TransactionSchema = new dynamoose.Schema({
     index: [
       {
         global: true,
-        name: 'CreatedAtIndex',
+        name: 'elapsedTimeIndex',
+        rangeKey: 'elapsedTime',
       },
     ]
+  },
+  elapsedTime: {
+    type: Number,
+    default: Date.now(),
   },
   status: {
     type: String,
     index: [
       {
         global: true,
-        name: 'StatusIndex',
+        name: 'statusIndex',
+        rangeKey: 'elapsedTime',
       },
     ],
   },

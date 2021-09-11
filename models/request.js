@@ -28,7 +28,7 @@ const RequestSchema = new dynamoose.Schema({
     index:[
       {
         global: true,
-        name: 'TransactionIndex',
+        name: 'TransactionDateIndex',
         rangeKey: 'status',
       },
     ]
@@ -38,7 +38,7 @@ const RequestSchema = new dynamoose.Schema({
     index: [
       {
         global: true,
-        name: 'StatusIndex',
+        name: 'StatusDateIndex',
       },
     ],
   },

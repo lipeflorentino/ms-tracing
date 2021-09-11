@@ -17,7 +17,8 @@ export const newTransaction = async (event, context) => {
     const params = {
       status: 'initiated',
       transactionId,
-      createdAt: moment().format("YYYY-MM-DDThh:mm:ss:SSS"),
+      createdAt: moment().format("YYYY-MM-DD"),
+      elapsedTime: Date.now(),
     };
 
     const transaction = await Transaction.create(params);
@@ -132,7 +133,7 @@ export const listTransactions = async (event, context) => {
   console.log('params', { param, index });
 
   try {
-    const transactions = await Transaction.query('CreatedAtIndex').contains(param).exec();
+    const transactions = await Transaction.query(index).eq(param).exec();
 
     console.log('transactions', transactions);
 
