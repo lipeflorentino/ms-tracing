@@ -22,9 +22,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "deploy-dev": "sls deploy -s dev --aws-profile dev-uff",
-    "test": "npm run test",
-    "init-project": "./init-project.sh"
+    "deploy-dev": "sls deploy -s dev --aws-profile $STAGE"
   },
   "author": "Filipe Lima",
   "license": "ISC"

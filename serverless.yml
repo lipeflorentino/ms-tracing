@@ -8,16 +8,16 @@ variablesResolutionMode: 20210326
 
 custom:
   stage: ${opt:stage, 'dev'}
-  profile: ${self:custom.stage}-uff
-  region: us-east-1
-  awsId: 880994143713
+  profile: ${opt:profile, 'default'}
+  region: ${opt:region, 'us-east-1'}
+  awsId: 'YOUR_ACCOUNT_ID'
   stackName: ${self:service}-${self:custom.stage}
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
   #authorizer:
-    #name: user-manager-authorizer
-    #arn: arn:aws:cognito-idp:us-east-1:880994143713:userpool/us-east-1_rQlfwSLAc
+    #name: 'name'
+    #arn: 'arn'
     #identitySource: method.request.header.Authorization
 
 
