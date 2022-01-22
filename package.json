@@ -22,7 +22,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "deploy-dev": "sls deploy -s dev --aws-profile $STAGE"
+    "deploy-dev": "sls deploy -s dev --aws-profile dev-uff"
   },
   "author": "Filipe Lima",
   "license": "ISC"

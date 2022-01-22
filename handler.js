@@ -1,6 +1,7 @@
 import {
   saveRequest,
   getRequest,
+  listRequests,
   deleteRequest,
   getTransaction,
   newTransaction,
@@ -16,7 +17,7 @@ export const SaveRequest = async (event, context) => saveRequest(event, context)
 export const GetRequest = async (event, context) => getRequest(event, context);
 
 // sls invoke local -f ListRequest -s $STAGE -p tests/listRequest.json --aws-profile $PROFILE
-export const ListRequest = async (event, context) => listRequest(event, context);
+export const ListRequest = async (event, context) => listRequests(event, context);
 
 // sls invoke local -f DeleteRequest -s $STAGE -p tests/deleteRequest.json --aws-profile $PROFILE
 export const DeleteRequest = async (event, context) => deleteRequest(event, context);
